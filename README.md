@@ -1,5 +1,5 @@
 # Songs Slitter
-Script to split a audio file in small chunks 
+Script to split an audio file in small chunks 
 
 
 ## Getting Started & Running
@@ -22,5 +22,5 @@ execute:
 
 ## Authors
 * **Hugo Juarez Corrá** - [github account](https://github.com/hugocorra)
- 
+
 
