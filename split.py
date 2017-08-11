@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import sys
 from pydub import AudioSegment
 
 
@@ -58,7 +59,15 @@ def time_to_milliseconds(lst_tracks):
 
 if __name__ == '__main__':
     print 'loading...'
-    sound = AudioSegment.from_mp3("aaa.mp3")
+
+    if len(sys.argv) > 0:
+        filename, file_extension = os.path.splitext(sys.argv[1])
+    else:
+        print 'file to be splitted must be provided.'
+        exit(1)
+
+
+    sound = AudioSegment.from_file(filename + file_extension, file_extension[1:])
 
     print 'converting time'
     tracks = get_audio_time_tracks()
@@ -82,6 +91,6 @@ if __name__ == '__main__':
 
         output_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), outputs)
         outputfile = os.path.join(output_path,
-                                  '{}_{}.mp3'.format(str(i), tracks[i][1]))
+                                  '{}_{}{}'.format(str(i), tracks[i][1], file_extension))
 
-        track.export(outputfile, format="mp3")
+        track.export(outputfile, format=file_extension[1:])
